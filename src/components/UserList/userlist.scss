@@ -1,18 +1,29 @@
 .user-list {
-  @apply w-[20%] bg-second border-r-[1px] border-primary shadow-md;
-  width: 350px;
-  transition: all .5s;
+  font-family: Poppins;
+  @apply min-w-[320px] px-[20px] bg-second border-r-[1px] border-primary shadow-md transition-all duration-500 ease-out;
 
-  @media (max-width:1000px) {
-    width: 0px;
-    position: absolute;
-
+  @media (max-width: 1024px) {
+    @apply w-0 absolute;
     &.show {
-      width: 350px !important;
-      top: 0;
-      left: 71px;
-      z-index: 10;
-      height: 100%;
+      @apply min-w-[320px] h-full top-0 left-[80px] z-[10];
+    }
+  }
+  .user-group {
+    @apply flex-col gap-[20px] pt-[80px];
+    .user-item {
+      @apply flex justify-between items-center;
+      > div {
+        @apply flex items-center gap-[20px];
+        .user-avatar {
+          @apply flex justify-center items-center w-[50px] h-[50px] bg-blue text-white rounded-full;
+        }
+        > p {
+          @apply text-white;
+        }
+      }
+      > span {
+        @apply w-[10px] h-[10px] rounded-full;
+      }
     }
   }
 }

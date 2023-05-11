@@ -14,28 +14,28 @@
         @apply text-fifth text-[14px] font-[400];
       }
     }
-    .chatroom-right{
+    .chatroom-right {
       position: relative;
-      .chatroom-tool{
+      .chatroom-tool {
         @apply flex flex-col gap-[5px] cursor-pointer w-40 h-40 rounded-full bg-transparent justify-center items-center;
-  
-        span{
+
+        span {
           @apply bg-[#6c7883] rounded-full block w-5 h-5;
         }
-        &:hover{
-          span{
+        &:hover {
+          span {
             @apply bg-[#98a6b3];
           }
         }
-        &.active{
+        &.active {
           @apply bg-[#334150];
         }
       }
-      .chatroom-tool-modal{
+      .chatroom-tool-modal {
         @apply w-200 flex flex-col text-[white] absolute bg-[#17212b] right-0 top-[50px] rounded-md text-center shadow-[0_1px_1px_2px_rgba(3,3,3,0.1)];
-        .item{
+        .item {
           @apply cursor-pointer rounded-md p-5;
-          &:hover{
+          &:hover {
             @apply bg-[#1d2733];
           }
         }
@@ -52,20 +52,20 @@
       height: calc(100% - 60px);
 
       .chatroom-msg-group {
-        @apply space-y-[6px] w-full text-white text-[14px] font-[400] overflow-auto;
+        @apply space-y-[6px] w-full text-white text-[14px] font-[400] overflow-auto px-[10px];
         max-height: calc(100vh - 180px);
 
-        >div {
+        > div {
           @apply flex items-end gap-[8px];
 
           .user-detail {
             @apply flex justify-center items-center max-w-[40px] max-h-[40px] rounded-full;
 
-            >p {
+            > p {
               @apply flex justify-center items-center bg-blue min-w-[40px] min-h-[40px] rounded-full uppercase;
             }
 
-            >img {
+            > img {
               @apply max-w-[40px] max-h-[40px] rounded-full;
             }
           }

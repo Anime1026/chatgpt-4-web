@@ -40,7 +40,6 @@ module.exports = {
         third: '#242f3d',
         forth: '#2b5278',
         fifth: '#607483',
-
         blue: '#2AB9F6',
         purple: '#7B4DD9',
         red: '#EE3254',

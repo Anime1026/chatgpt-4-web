@@ -61,13 +61,13 @@ const ChatRoom = () => {
   const removeHistory = async () => {
     postRequest('/clearHistory', { email: user.email }).then((res: any) => {
       if (res.status) {
-        toast.success("Successfully remove your chat histories");
+        toast.success('Successfully remove your chat histories');
         setOpenTools(false);
       } else {
         toast.error(res.message);
       }
-    })
-  }
+    });
+  };
 
   useEffect(() => {
     socket.on('connect', async () => {
@@ -107,18 +107,29 @@ const ChatRoom = () => {
           <h4>ChatGPT</h4>
           <p>bot</p>
         </div>
-        <div className='chatroom-right'>
-          <div className={`chatroom-tool ${openTools?"active":""}`} onClick={() => { setOpenTools(!openTools) }}>
+        <div className="chatroom-right">
+          <div
+            className={`chatroom-tool ${openTools ? 'active' : ''}`}
+            onClick={() => {
+              setOpenTools(!openTools);
+            }}
+          >
             <span></span>
             <span></span>
             <span></span>
           </div>
-          {openTools &&
-          <div className='chatroom-tool-modal'>
-            <div className='item' onClick={()=>{removeHistory()}}>
-              Clear My History
+          {openTools && (
+            <div className="chatroom-tool-modal">
+              <div
+                className="item"
+                onClick={() => {
+                  removeHistory();
+                }}
+              >
+                Clear My History
+              </div>
             </div>
-          </div>}
+          )}
         </div>
       </div>
       <div className="chatroom-body">
@@ -139,9 +150,13 @@ const ChatRoom = () => {
                     </div>
                   )}
                   <div className={`messages ${item.from === user.user_id ? 'bg-forth' : 'bg-second'}`}>
-                    <span className='inline'>{`[${item.first_name.slice(0, 1).toUpperCase()}] : `}</span>
+                    <span className="inline">{`[${item.first_name.slice(0, 1).toUpperCase()}] : `}</span>
                     {item.message.map((ele: string, ind2: number) => {
-                      return <p className='inline' key={ind1 + ind2}>{ele}</p>;
+                      return (
+                        <p className="inline" key={ind1 + ind2}>
+                          {ele}
+                        </p>
+                      );
                     })}
                   </div>
                 </div>
