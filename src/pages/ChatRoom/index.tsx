@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { io } from 'socket.io-client';
 import IconMenu from '../../components/Icons';
-import useStore from '../../useStore';
-import { getUserInfo } from '../../utils';
 import { MSGTypeInterface } from '../../type';
 import AIImg from '../../assets/images/openai.png';
 import { postRequest } from '../../service';
 import { toast } from '../../components/Toast';
+import useStore from '../../useStore';
+import { getUserInfo } from '../../utils';
 
 const socket = io(process.env.REACT_APP_BACKEND_BASE_URL as string);
 
@@ -89,6 +89,7 @@ const ChatRoom = () => {
 
     return () => {
       socket.off('connect');
+      socket.off('chatgpt');
       socket.off('group');
     };
     // eslint-disable-next-line

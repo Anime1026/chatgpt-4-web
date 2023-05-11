@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
+import useStore from '../../useStore';
+import { getUserInfo } from '../../utils';
 import { postRequest } from '../../service';
 
 const socket = io(process.env.REACT_APP_BACKEND_BASE_URL as string);
 
 const UserList = (props: any) => {
-  const { mobileList } = props;
+  const { token } = useStore();
+  const [user] = useState<any>(getUserInfo(token));
   const [userList, setUserList] = useState([]);
 
   const getUsers = async () => {
@@ -15,12 +18,17 @@ const UserList = (props: any) => {
           return { ...item, network: false };
         });
         setUserList(data);
+        socket.emit('join room', {
+          user_id: user.user_id,
+          group: user.group
+        });
       }
     });
   };
 
   useEffect(() => {
     getUsers();
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -28,11 +36,10 @@ const UserList = (props: any) => {
       let data: any = userList.map((item: any) => {
         return { ...item, network: false };
       });
-
       // eslint-disable-next-line
       Object.keys(e as { [key: string]: any }).map((key: string) => {
         const index = data.map((ele: any) => ele._id).indexOf(e[key]);
-        data[index].network = true;
+        if (data[index]) data[index].network = true;
       });
       setUserList(data);
     });
@@ -44,8 +51,8 @@ const UserList = (props: any) => {
   }, [userList]);
 
   return (
-    <div className={`user-list ${mobileList ? 'show' : ''}`}>
-      <div className={`user-group ${mobileList ? 'flex' : 'hidden'}`}>
+    <div className={`user-list ${props.mobileList ? 'show' : ''}`}>
+      <div className={`user-group ${props.mobileList ? 'flex' : 'hidden'}`}>
         {userList.map((item: any, key: number) => {
           return (
             <div key={key} className="user-item">

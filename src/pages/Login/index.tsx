@@ -2,14 +2,17 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 // @ts-ignore
 import Zoom from 'react-reveal/Zoom';
+import { io } from 'socket.io-client';
 import { BeatLoader } from 'react-spinners';
 import Input from '../../components/Input';
 import IconMenu from '../../components/Icons';
 import Validator from '../../components/Validator';
 import { toast } from '../../components/Toast';
 import useStore from '../../useStore';
-import { emailValidator, checkValidator, passwordView } from '../../utils';
+import { emailValidator, checkValidator, passwordView, getUserInfo } from '../../utils';
 import { postRequest } from '../../service';
+
+const socket = io(process.env.REACT_APP_BACKEND_BASE_URL as string);
 
 const Login = () => {
   /* common variable */
@@ -65,11 +68,17 @@ const Login = () => {
         password: userData.password.value
       };
 
-      setIsLoading(true);
+      // setIsLoading(true);
       postRequest(`/login`, data).then((res: any) => {
         if (res.status) {
           toast.success(res.message);
           isKeep ? update({ token: res.token }) : updateSession({ token: res.token });
+          let user: any = getUserInfo(res.token);
+          const data = {
+            user_id: user.user_id,
+            group: user.group
+          };
+          socket.emit('join room', data);
           navigate('/user/chatting');
         } else {
           toast.error(res.message);
