@@ -9,7 +9,10 @@
     }
   }
   .user-search {
-    @apply h-[60px] bg-second border-b-[1px] border-primary shadow-md;
+    @apply flex items-center h-[60px] px-[20px] bg-second border-b-[1px] border-primary shadow-md;
+    > input {
+      @apply w-full px-[10px] py-[6px] text-white bg-third border-none outline-none rounded-[4px];
+    }
   }
 
   .user-group {

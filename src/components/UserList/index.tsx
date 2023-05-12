@@ -58,7 +58,9 @@ const UserList = (props: any) => {
 
   return (
     <div className={`user-list ${props.mobileList ? 'show' : ''}`}>
-      <div className="user-search"></div>
+      <div className="user-search">
+        <input type="text" placeholder="Search" />
+      </div>
       <div className={`user-group ${props.mobileList ? 'flex' : 'hidden'}`}>
         {userList.map((item: any, key: number) => {
           return (
