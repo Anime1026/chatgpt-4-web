@@ -17,12 +17,6 @@ const UserList = (props: any) => {
         let data = res.data.map((item: any) => {
           return { ...item, network: false };
         });
-        res.data.map((item: any) => {
-          data.push({ ...item, network: false });
-        });
-        res.data.map((item: any) => {
-          data.push({ ...item, network: false });
-        });
         setUserList(data);
         socket.emit('join room', {
           user_id: user.user_id,
