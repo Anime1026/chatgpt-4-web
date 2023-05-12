@@ -1,7 +1,7 @@
 .user-layout {
   @apply flex bg-primary h-full min-h-[100vh] w-full;
   main {
-    width: calc(100% - 350px);
+    width: calc(100% - 320px);
 
     @media (max-width: 1024px) {
       width: 100%;
