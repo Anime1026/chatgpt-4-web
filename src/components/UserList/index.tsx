@@ -17,6 +17,12 @@ const UserList = (props: any) => {
         let data = res.data.map((item: any) => {
           return { ...item, network: false };
         });
+        res.data.map((item: any) => {
+          data.push({ ...item, network: false });
+        });
+        res.data.map((item: any) => {
+          data.push({ ...item, network: false });
+        });
         setUserList(data);
         socket.emit('join room', {
           user_id: user.user_id,
@@ -52,6 +58,7 @@ const UserList = (props: any) => {
 
   return (
     <div className={`user-list ${props.mobileList ? 'show' : ''}`}>
+      <div className="user-search"></div>
       <div className={`user-group ${props.mobileList ? 'flex' : 'hidden'}`}>
         {userList.map((item: any, key: number) => {
           return (

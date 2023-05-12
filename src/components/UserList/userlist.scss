@@ -1,15 +1,20 @@
 .user-list {
   font-family: Poppins;
-  @apply min-w-[320px] px-[20px] bg-second border-r-[1px] border-primary shadow-md transition-all duration-500 ease-out;
+  @apply flex flex-col min-w-[320px] h-full bg-second border-r-[1px] border-primary shadow-md transition-all duration-500 ease-out;
 
   @media (max-width: 1024px) {
     @apply w-0 absolute;
     &.show {
-      @apply min-w-[320px] h-full top-0 left-[80px] z-[10];
+      @apply min-w-[280px] h-full top-0 left-[80px] z-[10];
     }
   }
+  .user-search {
+    @apply h-[60px] bg-second border-b-[1px] border-primary shadow-md;
+  }
+
   .user-group {
-    @apply flex-col gap-[20px] pt-[80px];
+    @apply flex-col gap-[20px] overflow-auto px-[20px] py-[20px];
+    max-height: calc(100vh - 60px);
     .user-item {
       @apply flex justify-between items-center;
       > div {
