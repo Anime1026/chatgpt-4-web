@@ -3,15 +3,15 @@
   @apply flex flex-col w-full h-full;
 
   .chatroom-header {
-    @apply flex items-center h-[80px] px-[20px] justify-between bg-second border-b-[1px] border-primary shadow-md;
+    @apply flex items-center h-[60px] px-[20px] justify-between bg-second border-b-[1px] border-primary shadow-md;
 
     .chatroom-element-info {
       h4 {
-        @apply text-white text-[16px] font-[600];
+        @apply text-white text-[14px] font-[600];
       }
 
       p {
-        @apply text-fifth text-[14px] font-[400];
+        @apply text-fifth text-[12px] font-[400];
       }
     }
     .chatroom-right {
@@ -45,11 +45,11 @@
 
   .chatroom-body {
     @apply flex flex-col justify-between;
-    height: calc(100% - 80px);
+    height: calc(100% - 60px);
 
     .chatroom-msg-content {
       @apply flex items-end p-[20px] w-full;
-      height: calc(100% - 60px);
+      height: calc(100% - 40px);
 
       .chatroom-msg-group {
         @apply space-y-[6px] w-full text-white text-[14px] font-[400] overflow-auto px-[10px];
