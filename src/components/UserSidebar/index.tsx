@@ -17,7 +17,7 @@ const UserSidebar = (props: any) => {
   return (
     <div className="user-sidebar">
       <button className="hamburger-button" onClick={() => getWidth() < 1024 && props.setOpen(!props.open)}>
-        <IconMenu icon="Hamburger" size={24} height={20} />
+        <IconMenu icon="Hamburger" size={22} height={20} />
       </button>
       <div className="user-setting-list"></div>
     </div>
