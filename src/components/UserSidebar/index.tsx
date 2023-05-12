@@ -12,6 +12,7 @@ const UserSidebar = (props: any) => {
     };
     setResponsiveness();
     window.addEventListener('resize', setResponsiveness);
+    // eslint-disable-next-line
   }, []);
 
   return (
