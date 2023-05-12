@@ -8,20 +8,7 @@ const UserLayout = () => {
   const { token } = useStore();
   const location = useLocation();
   const navigate = useNavigate();
-
   const [mobileUserList, setMobileUserList] = React.useState(false);
-
-  const getWidth = () => {
-    return window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-  };
-
-  useEffect(() => {
-    const setResponsiveness = () => {
-      getWidth() > 1024 && setMobileUserList(true);
-    };
-    setResponsiveness();
-    window.addEventListener('resize', setResponsiveness);
-  }, []);
 
   useEffect(() => {
     if (!token) navigate('/login');
