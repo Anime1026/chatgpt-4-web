@@ -10,6 +10,8 @@ const UserList = (props: any) => {
   const { token } = useStore();
   const [user] = useState<any>(getUserInfo(token));
   const [userList, setUserList] = useState([]);
+  const [find, setFind] = useState("");
+  const [newUserList, setNewUserList] = useState([]);
 
   const getUsers = async () => {
     await postRequest('/getAllUsers', {}).then((res: any) => {
@@ -43,20 +45,27 @@ const UserList = (props: any) => {
       });
       setUserList(data);
     });
-
     return () => {
       socket.off('online users');
     };
-    // eslint-disable-next-line
   }, [userList]);
+
+  useEffect(() => {
+    let lists = userList.filter((item: any) => {
+      if (item.first_name.search(new RegExp(find, "i")) > -1 || item.last_name.search(new RegExp(find, "i")) >-1 || item.user_name.search(new RegExp(find, "i")) >-1)
+        return item
+      else return false
+    })
+    setNewUserList(lists);
+  }, [userList, find])
 
   return (
     <div className={`user-list ${props.mobileList ? 'show' : '!hidden'}`}>
       <div className="user-search">
-        <input type="text" placeholder="Search" />
+        <input type="text" placeholder="Search" onChange={(e) => { setFind(e.target.value) }} />
       </div>
       <div className="user-group">
-        {userList.map((item: any, key: number) => {
+        {newUserList.map((item: any, key: number) => {
           return (
             <div key={key} className="user-item">
               <div>
