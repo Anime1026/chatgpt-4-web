@@ -8,6 +8,12 @@
       @apply min-w-[280px] h-full top-0 left-[60px] md:left-[80px] z-[10];
     }
   }
+
+  @media (max-width:400px) {
+    &.show{
+      min-width: calc(100% - 60px);
+    }
+  }
   .user-search {
     @apply flex items-center h-[60px] px-[20px] bg-second border-b-[1px] border-primary shadow-md;
     > input {
