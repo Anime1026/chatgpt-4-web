@@ -73,7 +73,8 @@ const ChatRoom = () => {
     socket.on('connect', async () => {
       const data = {
         user_id: user.user_id,
-        group: user.group
+        group: user.group,
+        user_name: user.user_name
       };
       /* ---------------join in rooms--------------- */
       socket.emit('join room', data);
