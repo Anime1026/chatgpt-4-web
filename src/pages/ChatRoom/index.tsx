@@ -1,12 +1,13 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { io } from 'socket.io-client';
-import IconMenu from '../../components/Icons';
 import { MSGTypeInterface } from '../../type';
 import AIImg from '../../assets/images/openai.png';
 import { postRequest } from '../../service';
 import { toast } from '../../components/Toast';
 import useStore from '../../useStore';
 import { getUserInfo } from '../../utils';
+import send from "../../assets/images/send.png"
+import attach from "../../assets/images/attach.png"
 
 const socket = io(process.env.REACT_APP_BACKEND_BASE_URL as string);
 
@@ -169,7 +170,8 @@ const ChatRoom = () => {
         </div>
         <div className="chatroom-typing-content">
           <button className="type-controller">
-            <IconMenu icon="Attach" size={22} height={30} />
+            <img alt='attach' src={attach} width={22} height={30}></img>
+            {/* <IconMenu icon="Attach" size={22} height={30} /> */}
           </button>
           <textarea
             ref={inputRef}
@@ -179,8 +181,8 @@ const ChatRoom = () => {
             onKeyUp={(e: any) => handleKeyUp(e)}
             onChange={(e: any) => setMsg(e.target.value)}
           />
-          <button className="type-controller">
-            <IconMenu icon="Send" size={20} />
+          <button className="type-controller" onClick={() => { sendChatting(); setMsg('') }}>
+            <img alt='send' src={send} width={20} height={20} style={{marginLeft:"5px"}}></img>
           </button>
         </div>
       </div>
