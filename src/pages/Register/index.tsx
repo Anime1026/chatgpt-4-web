@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 // @ts-ignore
 import Zoom from 'react-reveal/Zoom';
@@ -14,6 +14,7 @@ const Register = () => {
   /* common variable */
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const [smallMobile, setSmallMobile] = useState(false);
   /* variables for register user */
   const registerInitialize = {
     firstName: {
@@ -123,10 +124,27 @@ const Register = () => {
     }
   };
 
+  const getHeight = () => {
+    return window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+  };
+
+  useEffect(() => {
+    const setResponsiveness = () => {
+      if (getHeight() < 480) {
+        setSmallMobile(true);
+      } else {
+        setSmallMobile(false);
+      }
+    };
+    setResponsiveness();
+    window.addEventListener('resize', setResponsiveness);
+    // eslint-disable-next-line
+  }, []);
+
   return (
     <Zoom top>
       <div className="auth-container">
-        <div className="auth-form">
+        <div className={`auth-form ${smallMobile ? 'max-h-[400px]' : 'max-h-[600px] xs:max-h-[800px]'}`}>
           <div className="flex flex-col gap-[20px]">
             <h2 className="font-BalsamiqSans">Sign up</h2>
             <div className="form-control">

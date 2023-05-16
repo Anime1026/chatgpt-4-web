@@ -4,7 +4,7 @@
   .auth-container {
     @apply flex justify-center items-center gap-[4%] h-full min-h-[100vh] p-[20px];
     .auth-form {
-      @apply flex flex-col gap-[30px] xs:gap-[40px] sm:gap-[60px] bg-blue/[0.1] px-[20px] sm:px-[30px] lg:px-[40px] xl:px-[50px] py-[50px] rounded-[20px] shadow-xl;
+      @apply flex flex-col gap-[30px] xs:gap-[40px] sm:gap-[60px] bg-blue/[0.1] px-[20px] sm:px-[30px] lg:px-[40px] xl:px-[50px] py-[50px] rounded-[20px] shadow-xl overflow-auto;
       h2 {
         @apply text-[36px] lg:text-[40px] xl:text-[44px] text-center sm:text-left text-white font-[700px];
       }
